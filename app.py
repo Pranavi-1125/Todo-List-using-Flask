@@ -35,7 +35,8 @@ class MyTask(db.Model):
     def __repr__(self) -> str:
         return f"Task {self.id}"
     
-
+with app.app_context():
+    db.create_all()  
 
 # POST - when user submits a form
 # GET - when user requests a page
@@ -84,6 +85,4 @@ def update_task(id: int):
         return render_template("edit.html", task=task_to_update)
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()  
     app.run(debug=True)
